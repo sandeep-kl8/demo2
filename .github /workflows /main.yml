@@ -3,7 +3,7 @@ name: Hello World Structured Pipeline
 on:
   workflow_dispatch:
   push:
-    branches:
+    commit:
       - main
 
 jobs:
