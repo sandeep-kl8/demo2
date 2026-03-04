@@ -1,0 +1,29 @@
+name: Parallel Build Demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  parallel-job:
+    runs-on: arc-runner-set   # label of your ARC runner
+    strategy:
+      matrix:
+        module: [ru1, ru2, ru3]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Module Name
+        run: |
+          echo "Running build for ${{ matrix.module }}"
+          echo "Hello from ${{ matrix.module }}"
+
+      - name: Simulate Build
+        run: |
+          echo "Building ${{ matrix.module }}"
+          sleep 10
+          echo "Build completed for ${{ matrix.module }}"
